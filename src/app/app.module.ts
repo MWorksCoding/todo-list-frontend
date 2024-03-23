@@ -24,6 +24,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -48,11 +51,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatRippleModule,
+    MatCardModule,
     MatSelectModule,
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
-    MatToolbarModule
+    MatChipsModule,
+    MatToolbarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

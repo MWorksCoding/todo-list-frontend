@@ -1,5 +1,41 @@
-<form (ngSubmit)="login()">
-    <input type="text" name="username" [(ngModel)]="username" required>
-    <input type="password" name="password" [(ngModel)]="password" required>
-    <button>Login</button>
-</form>
+<div class="loading-screen" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+  <mat-chip color="primary">Loading</mat-chip>
+</div>
+
+<mat-toolbar color="primary">
+  <span>My Todo App</span>
+</mat-toolbar>
+
+<div class="login-card">
+  <mat-card style="width: 40vw">
+    <form (ngSubmit)="login()">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-subtitle>Some todos are waiting for you</mat-card-subtitle>
+      </mat-card-header>
+      
+      <div class="login-input-fields">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput type="text" name="username" [(ngModel)]="username" required />
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" name="password" [(ngModel)]="password" required />
+        </mat-form-field>
+      </div>
+      
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
+
+<!-- <form (ngSubmit)="login()">
+  <input type="text" name="username" [(ngModel)]="username" required />
+  <input type="password" name="password" [(ngModel)]="password" required />
+  <button>Login</button>
+</form> -->
