@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   async createTodo() {
-    const url = environment.baseUrl + "/todos/";
+    const url = environment.baseUrl + '/todos/';
     const body = {
       "title": "Sport machen", // Eingabefelder müssen vorhanden sein!
       "author":"Sportler", // Eingabefelder müssen vorhanden sein!
