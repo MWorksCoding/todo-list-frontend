@@ -1,4 +1,4 @@
-<div id="loading-screen" (click)="closeLoadingScreen()">
+<div id="loading-screen" *ngIf="loading">
   <div class="loading-screen-center">
       <mat-spinner color="primary"></mat-spinner>
       <span class="loading-screen-text">Loading</span>
@@ -16,7 +16,7 @@
         <mat-card-title>Login</mat-card-title>
         <mat-card-subtitle>Some todos are waiting for you</mat-card-subtitle>
       </mat-card-header>
-      
+
       <div class="login-input-fields">
         <mat-form-field>
           <mat-label>Username</mat-label>
@@ -33,5 +33,6 @@
         <button mat-raised-button color="primary" type="submit">Login</button>
       </mat-card-actions>
     </form>
+    <div class="warning-message" *ngIf="failedLogin">Login failed, please try again!</div>
   </mat-card>
 </div>
