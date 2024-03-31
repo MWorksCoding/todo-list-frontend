@@ -1,6 +1,8 @@
-<div class="loading-screen" *ngIf="loading">
-  <mat-spinner></mat-spinner>
-  <mat-chip color="primary">Loading</mat-chip>
+<div id="loading-screen" (click)="closeLoadingScreen()">
+  <div class="loading-screen-center">
+      <mat-spinner color="primary"></mat-spinner>
+      <span class="loading-screen-text">Loading</span>
+  </div>
 </div>
 
 <mat-toolbar color="primary">
@@ -8,7 +10,7 @@
 </mat-toolbar>
 
 <div class="login-card">
-  <mat-card style="width: 40vw">
+  <mat-card style="width: 500px">
     <form (ngSubmit)="login()">
       <mat-card-header>
         <mat-card-title>Login</mat-card-title>
@@ -33,9 +35,3 @@
     </form>
   </mat-card>
 </div>
-
-<!-- <form (ngSubmit)="login()">
-  <input type="text" name="username" [(ngModel)]="username" required />
-  <input type="password" name="password" [(ngModel)]="password" required />
-  <button>Login</button>
-</form> -->

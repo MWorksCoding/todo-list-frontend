@@ -11,25 +11,50 @@ export class LoginComponent {
   loading: boolean = false;
   username: string = '';
   password: string = '';
-  constructor(
-    private router: Router,
-     private auth : AuthService) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   ngOnInit(): void {}
 
   /**
    * Communication to backend
+   * saving token to local storage
    */
   async login() {
-    this.loading = true;
+    this.showLoadingScreen()
     try {
-      let resp:any  = await this.auth.loginWithUsernameAndPassword(this.username, this.password);
-      localStorage.setItem('token', resp['token']); // save token to local storage
-      this.loading = false; // show loading screen
-      this.router.navigateByUrl('/todos'); //  Redirection
+      let resp: any = await this.auth.loginWithUsernameAndPassword(
+        this.username,
+        this.password
+      );
+      this.closeLoadingScreen()
+      localStorage.setItem('token', resp['token']);
+      this.router.navigateByUrl('/todos');
     } catch (e) {
-      alert('Login failed')
+      this.closeLoadingScreen()
+      alert('Login failed');
       console.error(e);
+    }
+  }
+
+  
+  /**
+   * shows the loading screen
+   */
+  showLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'block';
+    }
+  }
+
+
+  /**
+   * hides the loading screen
+   */
+  closeLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
     }
   }
 }

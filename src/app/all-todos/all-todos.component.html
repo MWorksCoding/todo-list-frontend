@@ -19,7 +19,7 @@
     </ng-container>
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Task </th>
-      <td mat-cell *matCellDef="let row"> {{row.title}} <mat-icon class="cursor-pointer" (click)="openDialog(row.title)">edit</mat-icon> </td>
+      <td mat-cell *matCellDef="let row"> {{row.title}} <mat-icon class="cursor-pointer" (click)="openDialog(row.title, row.id, row.checked)">edit</mat-icon> </td>
     </ng-container>
     <ng-container matColumnDef="created_at">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at </th>
@@ -27,11 +27,11 @@
     </ng-container>
     <ng-container matColumnDef="checked">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Checked </th>
-      <td mat-cell *matCellDef="let row"> <mat-checkbox [checked]="row.checked"></mat-checkbox></td>
+      <td mat-cell *matCellDef="let row"> <mat-checkbox [(ngModel)]="row.checked" (ngModelChange)="checkTodo(row.title, row.id, row.checked)"></mat-checkbox></td>
     </ng-container>
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
-      <td mat-cell *matCellDef="let row"> <mat-icon class="cursor-pointer">delete</mat-icon></td>
+      <td mat-cell *matCellDef="let row"> <mat-icon class="cursor-pointer" (click)="deleteTodo(row.id)">delete</mat-icon></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -2,7 +2,7 @@
 <form class="p-8">
     <mat-form-field class="example-full-width">
       <mat-label>Edit Todo</mat-label>
-      <input matInput placeholder="Enter a text" [(ngModel)]="data.title" [ngModelOptions]="{ standalone: true }" maxlength="100">
+      <input matInput placeholder="Enter a text" [(ngModel)]="data.title" [ngModelOptions]="{ standalone: true }" maxlength="100" required>
     </mat-form-field>
 </form>
 <div mat-dialog-actions>
