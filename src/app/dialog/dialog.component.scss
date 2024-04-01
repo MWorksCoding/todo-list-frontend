@@ -1,3 +1,9 @@
+@import '../login/login.component.scss';
+
+:host {
+    --mdc-dialog-container-color: white;
+  }
+
 .p-8 {
     padding: 8px;
 }

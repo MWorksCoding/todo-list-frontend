@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatChipsModule } from '@angular/material/chips';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatChipsModule,
     MatToolbarModule,
+    MatSlideToggleModule,
     BrowserAnimationsModule,
   ],
   providers: [

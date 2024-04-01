@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, HostBinding, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AppConfigService } from '../app-config.service';
 
 @Component({
   selector: 'app-dialog',
@@ -7,17 +8,29 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
+  isDarkTheme: boolean = false;
+  @HostBinding('class')
+  get themeMode() {
+    return this.isDarkTheme ? 'theme-dark' : 'theme-light';
+  }
+
+  @HostBinding('style.--mat-toolbar-container-background-color')
+  get dialogBackgroundColor() {
+    return this.isDarkTheme ? 'var(--mat-toolbar-container-background-color-dark)' : 'var(--mat-toolbar-container-background-color-light)';
+  }
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<DialogComponent>
+    public dialogRef: MatDialogRef<DialogComponent>,
+    private configs: AppConfigService
   ) {}
 
   /**
    * Initialization
    */
   ngOnInit() {
-    console.log(this.data);
-    console.log(this.data.title);
+    this.configs.isDark$.subscribe((isDark: any) => {
+      this.isDarkTheme = isDark;
+    });
   }
 
   /**

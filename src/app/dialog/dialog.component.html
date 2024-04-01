@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>Edit Todo:</h1>
-<form class="p-8">
+<h1 mat-dialog-title [style.background-color]="isDarkTheme ? 'var(--mat-toolbar-container-background-color-dark)' : 'var(--mat-toolbar-container-background-color-light)'" [style.color]="isDarkTheme ? 'var(--white-text)' : 'var(--black-text)'">Edit Todo:</h1>
+<form class="p-8" [style.background-color]="isDarkTheme ? 'var(--mat-toolbar-container-background-color-dark)' : 'var(--mat-toolbar-container-background-color-light)'">
     <mat-form-field class="example-full-width">
       <mat-label>Edit Todo</mat-label>
       <input matInput placeholder="Enter a text" [(ngModel)]="data.title" [ngModelOptions]="{ standalone: true }" maxlength="100" required>
     </mat-form-field>
 </form>
-<div mat-dialog-actions>
+<div mat-dialog-actions [style.background-color]="isDarkTheme ? 'var(--mat-toolbar-container-background-color-dark)' : 'var(--mat-toolbar-container-background-color-light)'">
   <button mat-raised-button mat-dialog-close color="primary" (click)="onClose(data.title)">Save</button>
   <button mat-raised-button mat-dialog-close color="warn" cdkFocusInitial>Abort</button>
 </div>

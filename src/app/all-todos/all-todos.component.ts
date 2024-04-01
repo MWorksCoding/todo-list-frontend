@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostBinding, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,7 @@ import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environments';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { AppConfigService } from '../app-config.service';
 
 @Component({
   selector: 'app-all-todos',
@@ -24,17 +25,29 @@ export class AllTodosComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;
+  isDarkTheme: boolean = false;
+  @HostBinding('class')
+  get themeMode() {
+    return this.isDarkTheme ? 'theme-dark' : 'theme-light';
+  }
   tableDataSource: any;
   todos: any = [];
   error: string = '';
   title: string = '';
   newTodo: string = '';
-  constructor(private http: HttpClient, public dialog: MatDialog) {}
+  constructor(
+    private http: HttpClient,
+     public dialog: MatDialog,
+     private configs: AppConfigService,
+     ) {}
 
   /**
-   * Initialization
+   * Initialization / activate dark mode
    */
   ngOnInit() {
+    this.configs.isDark$.subscribe((isDark: any) => {
+      this.isDarkTheme = isDark;
+    });
     this.updateTable();
   }
 
@@ -175,4 +188,12 @@ export class AllTodosComponent {
       console.error('Error updating todo:', error);
     }
   }
+
+    /**
+   * toggeling to dark mode
+   */
+
+    toggleTheme(isDark: boolean) {
+      this.configs.toggleDarkTheme(isDark);
+    }
 }

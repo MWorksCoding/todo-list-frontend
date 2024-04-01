@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --mat-toolbar-container-background-color-light: white;
+  --mat-toolbar-container-background-color-light-off: white;
+  --mat-toolbar-container-background-color-dark: #424242;
+  --mat-toolbar-container-background-color-dark-gray: #424242;
+  --mat-select-panel-background-color: white;
+  --mdc-dialog-container-color-light: white;
+  --mdc-dialog-container-color-dark: #424242;
+  --black-text: black;
+  --white-text: white;
+}

@@ -1,10 +1,14 @@
 
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="menu-bar">
   <span>My Todo App</span>
-</mat-toolbar>
-<h1>{{error}}</h1>
-<!-- <div *ngFor="let todo of todos"><input [checked]="todo.checked" type="checkbox">{{ todo.title }}</div> -->
 
+  <mat-slide-toggle (change)="toggleTheme($event.checked)">
+    <mat-icon *ngIf="!isDarkTheme" style="color: white !important">light_mode</mat-icon>
+    <mat-icon *ngIf="isDarkTheme" style="color: white !important">dark_mode</mat-icon>
+    </mat-slide-toggle>
+</mat-toolbar>
+<!-- <div *ngFor="let todo of todos"><input [checked]="todo.checked" type="checkbox">{{ todo.title }}</div> -->
+<mat-card style="height: calc(100vh - 64px)">
 <mat-card class="todo-list-table">
 <mat-form-field>
   <mat-label>Filter</mat-label>
@@ -46,18 +50,18 @@
   <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10]" aria-label="Select page of todos"></mat-paginator>
 </div>
 </mat-card>
-
+</mat-card>
 
 <mat-toolbar color="primary" class="send-todos-div">
   <span>Add a Todo:</span>
   <form (ngSubmit)="postTodo()" class="send-todos-input-button">
-    <div class="login-input-fields">
+    <div>
       <mat-form-field>
         <mat-label>Enter a todo</mat-label>
         <input matInput type="text" name="title" [(ngModel)]="newTodo" required />
       </mat-form-field>
     </div>
-    <mat-card-actions>
+    <mat-card-actions style="padding: 16px 16px 16px 0">
       <button mat-raised-button type="submit">Send</button>
     </mat-card-actions>
   </form>

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { AppConfigService } from '../app-config.service';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,28 @@ export class LoginComponent {
   failedLogin: boolean = false;
   username: string = '';
   password: string = '';
-  constructor(private router: Router, private auth: AuthService) {}
 
-  ngOnInit(): void {}
+  isDarkTheme: boolean = false;
+  @HostBinding('class')
+  get themeMode() {
+    return this.isDarkTheme ? 'theme-dark' : 'theme-light';
+  }
+
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private configs: AppConfigService
+  ) {}
+
+  /**
+   * Initialization / activate dark mode
+   */
+  ngOnInit(): void {
+    this.configs.isDark$.subscribe((isDark: any) => {
+      this.isDarkTheme = isDark;
+    });
+  }
+
 
   /**
    * Communication to backend
@@ -38,7 +58,6 @@ export class LoginComponent {
     }
   }
 
-  
   /**
    * shows the loading screen
    */
@@ -49,7 +68,6 @@ export class LoginComponent {
     }
   }
 
-
   /**
    * hides the loading screen
    */
@@ -58,5 +76,13 @@ export class LoginComponent {
     if (loadingScreen) {
       loadingScreen.style.display = 'none';
     }
+  }
+
+  /**
+   * toggeling to dark mode
+   */
+
+  toggleTheme(isDark: boolean) {
+    this.configs.toggleDarkTheme(isDark);
   }
 }
