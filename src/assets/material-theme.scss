@@ -85,7 +85,7 @@ $accent-dark: mat-palette($mat-pink, 300);
 $warn-dark: mat-palette($mat-pink, 700);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$ald-app-theme: mat-light-theme(
+$app-theme-light: mat-light-theme(
   (
     color: (
       primary: $primary,
@@ -100,7 +100,7 @@ $ald-app-theme: mat-light-theme(
 // that you are using.
 
 // Switching to dark mode
-$ald-app-dark-theme: mat-dark-theme(
+$app-dark-theme: mat-dark-theme(
   (
     color: (
       primary: $primary-dark,
@@ -111,9 +111,9 @@ $ald-app-dark-theme: mat-dark-theme(
 );
 
 .theme-dark {
-  @include angular-material-theme($ald-app-dark-theme);
+  @include angular-material-theme($app-dark-theme);
 }
 
 .theme-light {
-  @include angular-material-theme($ald-app-theme);
+  @include angular-material-theme($app-theme-light);
 }
