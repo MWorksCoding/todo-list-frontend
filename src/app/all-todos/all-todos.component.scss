@@ -1,33 +1,73 @@
-@import '../login/login.component.scss';
+@import "../login/login.component.scss";
 
 .send-todos-div {
-    display: flex;
-    align-items: center;
-    height: 80px;
-    position: fixed;
-    bottom: 0;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
 }
 
-.send-todos-input-button{
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    margin: 0 16px 0 16px;
+.send-todos-input-button {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 0 16px 0 16px;
 }
 
-::ng-deep .mat-mdc-form-field-subscript-wrapper{
-    height: 0;
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  height: 0;
 }
 
-.todo-list-table{
-    margin: 32px;
+.todo-list-table {
+  margin: 32px;
 }
 
-.cursor-pointer{
-    cursor: pointer;
-    vertical-align: middle;
+.cursor-pointer {
+  cursor: pointer;
+  vertical-align: middle;
 }
 
 .mat-table-row:hover {
-    background-color: lightgray;
+  background-color: lightgray;
+}
+
+@media screen and (max-width: 600px) {
+  mat-paginator {
+    margin-bottom: 16px;
   }
+
+  th {
+    padding: 0 4px 0 4px;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  .todo-list-table {
+    margin: 4px;
+  }
+
+  .send-todos-input-button {
+    gap: 4px;
+    margin: 0 16px 0 4px;
+  }
+
+  .mdc-data-table__cell {
+    padding: 0 4px 0 4px;
+  }
+
+  mat-form-field {
+    width: 175px;
+  }
+
+  ::ng-deep .mat-sort-header-container {
+    justify-content: center !important;
+  }
+
+  .search-field {
+    width: 100% !important
+  }
+  
+}

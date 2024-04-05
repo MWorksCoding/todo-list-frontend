@@ -57,7 +57,6 @@ export class AllTodosComponent {
   async updateTable() {
     try {
       this.todos = await this.loadTodos();
-      console.log('todos are:', this.todos);
       this.tableDataSource = new MatTableDataSource(this.todos);
       this.tableDataSource.paginator = this.paginator;
       this.tableDataSource.sort = this.sort;
@@ -96,7 +95,6 @@ export class AllTodosComponent {
    * add a new todo
    */
   async postTodo(): Promise<void> {
-    console.log('todo is sended');
     try {
       const url = environment.baseUrl + '/todos/';
       const body = {
@@ -104,8 +102,8 @@ export class AllTodosComponent {
         checked: false,
       };
       const response = await lastValueFrom(this.http.post(url, body));
-      console.log('New todo:', response);
       this.updateTable();
+      this.newTodo = ''
     } catch (error) {
       console.error('Error creating todo:', error);
     }
@@ -119,7 +117,6 @@ export class AllTodosComponent {
    * @param checked boolean
    */
   openDialog(title: string, id: number, checked: boolean) {
-    console.log('title::', title);
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         title: title,
@@ -128,7 +125,6 @@ export class AllTodosComponent {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
       if (result) {
         this.updateTodo(result);
       }
@@ -149,7 +145,6 @@ export class AllTodosComponent {
       id: id,
       checked: checked,
     };
-    console.log('updatedInfo', updatedInfo);
     this.updateTodo(updatedInfo);
   }
 
@@ -158,17 +153,13 @@ export class AllTodosComponent {
    * @param updatedInfo title, id and checked status
    */
   async updateTodo(updatedInfo: any) {
-    console.log(updatedInfo);
-    console.log('todo is updated');
     try {
       const url = environment.baseUrl + '/todos/' + updatedInfo.id + '/';
       const body = {
         title: updatedInfo.title,
         checked: updatedInfo.checked,
       };
-      console.log('body checked', body);
       const response = await lastValueFrom(this.http.put(url, body));
-      console.log('Updated todo:', response);
       await this.updateTable();
     } catch (error) {
       console.error('Error updating todo:', error);
@@ -182,7 +173,6 @@ export class AllTodosComponent {
     try {
       const url = environment.baseUrl + '/todos/' + id + '/';
       const response = await lastValueFrom(this.http.delete(url));
-      console.log('Deleted todo:', response);
       await this.updateTable();
     } catch (error) {
       console.error('Error updating todo:', error);

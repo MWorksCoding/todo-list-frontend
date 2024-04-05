@@ -1,56 +1,100 @@
-
 <mat-toolbar color="primary" class="menu-bar">
   <span>My Todo App</span>
 
   <mat-slide-toggle (change)="toggleTheme($event.checked)">
-    <mat-icon *ngIf="!isDarkTheme" style="color: white !important">light_mode</mat-icon>
-    <mat-icon *ngIf="isDarkTheme" style="color: white !important">dark_mode</mat-icon>
-    </mat-slide-toggle>
+    <mat-icon *ngIf="!isDarkTheme" style="color: white !important"
+      >light_mode</mat-icon
+    >
+    <mat-icon *ngIf="isDarkTheme" style="color: white !important"
+      >dark_mode</mat-icon
+    >
+  </mat-slide-toggle>
 </mat-toolbar>
-<!-- <div *ngFor="let todo of todos"><input [checked]="todo.checked" type="checkbox">{{ todo.title }}</div> -->
-<mat-card style="height: calc(100vh - 64px)">
-<mat-card class="todo-list-table">
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Search for entry" #input>
-</mat-form-field>
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="tableDataSource" matSort>
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Number </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Task </th>
-      <td mat-cell *matCellDef="let row"> {{row.title}} <mat-icon class="cursor-pointer" (click)="openDialog(row.title, row.id, row.checked)">edit</mat-icon> </td>
-    </ng-container>
-    <ng-container matColumnDef="created_at">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at </th>
-      <td mat-cell *matCellDef="let row"> {{row.created_at | date: 'dd.MM.yyyy HH:mm:ss'}} </td>
-    </ng-container>
-    <ng-container matColumnDef="checked">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Checked </th>
-      <td mat-cell *matCellDef="let row"> <mat-checkbox [(ngModel)]="row.checked" (ngModelChange)="checkTodo(row.title, row.id, row.checked)"></mat-checkbox></td>
-    </ng-container>
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
-      <td mat-cell *matCellDef="let row"> <mat-icon class="cursor-pointer" (click)="deleteTodo(row.id)">delete</mat-icon></td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="mat-table-row"></tr>
-
-    <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
-
-  <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10]" aria-label="Select page of todos"></mat-paginator>
+<div *ngIf="!todos.length" style="margin-left: 32px;">
+  <h1>Please add a todo!</h1>
 </div>
-</mat-card>
-</mat-card>
+
+<div *ngIf="todos.length">
+  <mat-card style="height: calc(100vh - 64px)">
+    <mat-card class="todo-list-table">
+      <mat-form-field class="search-field">
+        <mat-label>Filter</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Search for entry"
+          #input
+        />
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="tableDataSource" matSort>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Number</th>
+            <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+          </ng-container>
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Task</th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.title }}
+              <mat-icon
+                class="cursor-pointer"
+                (click)="openDialog(row.title, row.id, row.checked)"
+                >edit</mat-icon
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Created at
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.created_at | date : "dd.MM.yyyy HH:mm:ss" }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="checked">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Checked</th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox
+                [(ngModel)]="row.checked"
+                (ngModelChange)="checkTodo(row.title, row.id, row.checked)"
+              ></mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+            <td mat-cell *matCellDef="let row">
+              <mat-icon class="cursor-pointer" (click)="deleteTodo(row.id)"
+                >delete</mat-icon
+              >
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            class="mat-table-row"
+          ></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              No data matching the filter "{{ input.value }}"
+            </td>
+          </tr>
+        </table>
+
+        <mat-paginator
+          showFirstLastButtons
+          [pageSizeOptions]="[5, 10]"
+          aria-label="Select page of todos"
+        ></mat-paginator>
+      </div>
+    </mat-card>
+  </mat-card>
+</div>
 
 <mat-toolbar color="primary" class="send-todos-div">
   <span>Add a Todo:</span>
@@ -58,7 +102,13 @@
     <div>
       <mat-form-field>
         <mat-label>Enter a todo</mat-label>
-        <input matInput type="text" name="title" [(ngModel)]="newTodo" required />
+        <input
+          matInput
+          type="text"
+          name="title"
+          [(ngModel)]="newTodo"
+          required
+        />
       </mat-form-field>
     </div>
     <mat-card-actions style="padding: 16px 16px 16px 0">

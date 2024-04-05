@@ -3,13 +3,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 16px 0 16px;
-  gap: 16px
+  gap: 16px;
 }
 
-.menu-bar{
-  display:flex;
+.menu-bar {
+  display: flex;
   align-items: center;
-  gap: 16px
+  gap: 16px;
 }
 
 .login-card {
@@ -19,33 +19,33 @@
 }
 
 .mat-mdc-card-header {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .mat-mdc-card-actions {
-    justify-content: center;
-    padding: 0px 16px 16px 16px;
+  justify-content: center;
+  padding: 0px 16px 16px 16px;
 }
 
 ::ng-deep .mat-mdc-card-header-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.loading-screen{
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.3);
-    flex-direction: column;
-    gap: 16px;
+.loading-screen {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  flex-direction: column;
+  gap: 16px;
 }
 
 #loading-screen {
@@ -61,7 +61,7 @@
   z-index: 2;
   cursor: pointer;
 }
- 
+
 .loading-screen-center {
   margin: 0;
   position: absolute;
@@ -71,7 +71,7 @@
   flex-direction: column;
   align-items: center;
 }
- 
+
 .loading-screen-text {
   color: white;
   padding-top: 20px;
@@ -83,4 +83,18 @@
   font-size: 16px;
   text-align: center;
   padding: 0px 16px 16px 16px;
+}
+
+.llogin-card-div {
+  width: 500px;
+}
+
+@media screen and (max-width: 600px) {
+  .login-card {
+    padding: 4px;
+  }
+
+  .login-card-div {
+    width: 100%;
+  }
 }
