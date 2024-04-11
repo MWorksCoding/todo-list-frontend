@@ -81,7 +81,6 @@ export class LoginComponent {
   /**
    * toggeling to dark mode
    */
-
   toggleTheme(isDark: boolean) {
     this.configs.toggleDarkTheme(isDark);
   }

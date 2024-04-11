@@ -7,11 +7,10 @@ import { BehaviorSubject } from 'rxjs';
 export class AppConfigService {
 
   constructor() { }
-
+  
   private isDarkSubject = new BehaviorSubject<boolean>(false);
   isDark$ = this.isDarkSubject.asObservable();
   toggleDarkTheme(isDark: boolean) {
     this.isDarkSubject.next(isDark);
   }
-  
 }

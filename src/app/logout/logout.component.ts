@@ -52,7 +52,6 @@ export class LogoutComponent {
       ); 
       await lastValueFrom(this.http.post(url, {}, { headers }));
       localStorage.removeItem('token');
-      this.router.navigateByUrl('/logout');
     } catch (e) {
       this.error = 'Error while logging out';
     }
