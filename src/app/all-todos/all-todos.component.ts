@@ -3,11 +3,12 @@ import { Component, HostBinding, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { lastValueFrom } from 'rxjs';
+import { catchError, lastValueFrom, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environments';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { AppConfigService } from '../app-config.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-todos',
@@ -37,9 +38,10 @@ export class AllTodosComponent {
   newTodo: string = '';
   constructor(
     private http: HttpClient,
-     public dialog: MatDialog,
-     private configs: AppConfigService,
-     ) {}
+    public dialog: MatDialog,
+    private configs: AppConfigService,
+    private router: Router
+  ) {}
 
   /**
    * Initialization / activate dark mode
@@ -103,7 +105,7 @@ export class AllTodosComponent {
       };
       const response = await lastValueFrom(this.http.post(url, body));
       this.updateTable();
-      this.newTodo = ''
+      this.newTodo = '';
     } catch (error) {
       console.error('Error creating todo:', error);
     }
@@ -130,7 +132,6 @@ export class AllTodosComponent {
       }
     });
   }
-
 
   /**
    * check or uncheck the todo
@@ -179,11 +180,11 @@ export class AllTodosComponent {
     }
   }
 
-    /**
+  /**
    * toggeling to dark mode
    */
 
-    toggleTheme(isDark: boolean) {
-      this.configs.toggleDarkTheme(isDark);
-    }
+  toggleTheme(isDark: boolean) {
+    this.configs.toggleDarkTheme(isDark);
+  }
 }

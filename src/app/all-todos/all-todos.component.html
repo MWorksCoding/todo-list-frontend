@@ -1,17 +1,21 @@
 <mat-toolbar color="primary" class="menu-bar">
-  <span>My Todo App</span>
-
-  <mat-slide-toggle (change)="toggleTheme($event.checked)">
-    <mat-icon *ngIf="!isDarkTheme" style="color: white !important"
-      >light_mode</mat-icon
-    >
-    <mat-icon *ngIf="isDarkTheme" style="color: white !important"
-      >dark_mode</mat-icon
-    >
-  </mat-slide-toggle>
+  <div>
+    <span>My Todo App</span>
+  </div>
+  <div>
+    <mat-slide-toggle (change)="toggleTheme($event.checked)">
+      <mat-icon *ngIf="!isDarkTheme" style="color: white !important"
+        >light_mode</mat-icon
+      >
+      <mat-icon *ngIf="isDarkTheme" style="color: white !important"
+        >dark_mode</mat-icon
+      >
+    </mat-slide-toggle>
+    <a href="/logout/" style="color: white; margin-left: 16px">Logout</a>
+  </div>
 </mat-toolbar>
 
-<div *ngIf="!todos.length" style="margin-left: 32px;">
+<div *ngIf="!todos.length" style="margin-left: 32px">
   <h1>Please add a todo!</h1>
 </div>
 

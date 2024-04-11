@@ -29,10 +29,10 @@ export class AuthService {
       username: username,
       password: password,
     };
-    console.log('url, body', url, body);
     return lastValueFrom(this.http.post(url, body));
   }
 }
+
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {

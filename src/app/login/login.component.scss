@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  justify-content: space-between;
 }
 
 .login-card {
@@ -85,7 +86,7 @@
   padding: 0px 16px 16px 16px;
 }
 
-.llogin-card-div {
+.login-card-div {
   width: 500px;
 }
 

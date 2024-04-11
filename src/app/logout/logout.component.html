@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="menu-bar">
+    <span>My Todo App</span>
+  
+    <mat-slide-toggle (change)="toggleTheme($event.checked)">
+      <mat-icon *ngIf="!isDarkTheme" style="color: white !important">light_mode</mat-icon>
+      <mat-icon *ngIf="isDarkTheme" style="color: white !important">dark_mode</mat-icon>
+      </mat-slide-toggle>
+  </mat-toolbar>
+
+  <mat-card style="height: calc(100vh - 64px)">
+    <div class="login-card">
+      <mat-card class="logout-card-div">
+        <h4 [style.color]="isDarkTheme ? 'var(--white-text)' : 'var(--black-text)'">Visit us soon again!</h4>
+        <p class="signin-signup" [style.color]="isDarkTheme ? 'var(--white-text)' : 'var(--black-text)'">
+            Not finished? <a href="/login/" [style.color]="isDarkTheme ? '#e91e62' : '#3f50b5'"><b >Sign in again</b></a>
+          </p>
+      </mat-card>
+    </div>
+  </mat-card>
